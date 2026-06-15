@@ -13,7 +13,7 @@ public class IabtcfConsentInfoPlugin: NSObject, FlutterPlugin, FlutterStreamHand
         channel.setStreamHandler(instance)
     }
     
-    private var events: FlutterEventSink!
+    private var events: FlutterEventSink?
     
     private var lastConsentInfoSent: [String: Any]?
     
@@ -57,7 +57,7 @@ public class IabtcfConsentInfoPlugin: NSObject, FlutterPlugin, FlutterStreamHand
         
         if (lastConsentInfoSent == nil || !NSDictionary(dictionary: consentInfo).isEqual(to: lastConsentInfoSent!)) {
             lastConsentInfoSent = consentInfo
-            events(consentInfo)
+            events?(consentInfo)
         }
     }
     
