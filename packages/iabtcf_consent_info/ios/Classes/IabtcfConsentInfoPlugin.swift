@@ -27,7 +27,7 @@ public class IabtcfConsentInfoPlugin: NSObject, FlutterPlugin, FlutterStreamHand
             self,
             selector: #selector(self.userDefaultsDidChange),
             name: UserDefaults.didChangeNotification,
-            object: nil
+            object: UserDefaults.standard
         )
         
         return nil
@@ -49,7 +49,13 @@ public class IabtcfConsentInfoPlugin: NSObject, FlutterPlugin, FlutterStreamHand
     
     @objc
     public func userDefaultsDidChange() {
-        sendConsentInfo()
+        if Thread.isMainThread {
+            sendConsentInfo()
+        } else {
+            DispatchQueue.main.async { [weak self] in
+                self?.sendConsentInfo()
+            }
+        }
     }
     
     func sendConsentInfo() {
