@@ -38,3 +38,23 @@ IabtcfConsentInfo.instance.consentInfo()
     // React to changes.
 });
 ```
+
+
+## FantaMaster Swift Package Manager support
+
+This maintained version adds iOS Swift Package Manager support. SwiftPM builds
+require Flutter 3.41 or newer and target iOS 15 or newer. The manifest consumes
+Flutter's generated `FlutterFramework` package. The existing Dart API and Android
+implementation are unchanged. CocoaPods integration is retained for consumers
+that still use it; enabling SwiftPM is controlled by the consuming application.
+
+Use the tagged Git release:
+
+```yaml
+dependencies:
+  iabtcf_consent_info:
+    git:
+      url: https://github.com/FantaMaster-SRL/iabtcf_consent_info.git
+      path: packages/iabtcf_consent_info
+      ref: iabtcf_consent_info-v3.4.3
+```
